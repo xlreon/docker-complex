@@ -2,7 +2,7 @@ const keys = require('./keys')
 
 // Express setup
 const express = require('express')
-const bodyParse = require('body-parser')
+const bodyParser = require('body-parser')
 const cors = require('cors')
 
 const app = express()
@@ -28,7 +28,7 @@ pgClient.query('CREATE TABLE IF NOT EXISTS values (number INT)')
 // Redis Client Setup
 
 const redis = require('redis')
-const redisClient = redis.createClinet({
+const redisClient = redis.createClient({
     host: keys.redisHost,
     port: keys.redisPort,
     retry_strategy: () => 1000 
