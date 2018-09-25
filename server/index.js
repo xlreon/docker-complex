@@ -53,7 +53,7 @@ app.get('/values/current',async (req, res) => {
     })
 });
 
-app.get('/values',async (req, res) => {
+app.post('/values',async (req, res) => {
     const index = req.body.index;
 
      if(pareseInt(index) > 40) {
