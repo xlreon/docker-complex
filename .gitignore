@@ -1,0 +1,5 @@
+.DS_Store
+server/.DS_Store
+worker/.DS_Store
+client/.DS_Store
+nginx/.DS_Store
