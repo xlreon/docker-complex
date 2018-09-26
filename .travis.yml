@@ -10,3 +10,11 @@ after_success:
     - docker build -t xlreon/complex-nginx ./nginx
     - docker build -t xlreon/complex-server ./server
     - docker build -t xlreon/complex-worker ./worker
+    # Logging in to docker cli
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    # Pushing to docker hub
+    - docker push xlreon/complex-client 
+    - docker push xlreon/complex-nginx 
+    - docker push xlreon/complex-server 
+    - docker push xlreon/complex-worker 
+
