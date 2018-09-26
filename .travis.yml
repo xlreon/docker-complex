@@ -1,22 +1,21 @@
 sudo: required
 services:
-    - docker
+  - docker
 
 before_install:
-    - docker build -t xlreon/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t xlreon/react-test -f ./client/Dockerfile.dev ./client
+
 script:
-    - docker run xlreon/react-test npm test -- --coverage
+  - docker run xlreon/react-test npm test -- --coverage
 
 after_success:
-    - docker build -t xlreon/complex-client ./client
-    - docker build -t xlreon/complex-nginx ./nginx
-    - docker build -t xlreon/complex-server ./server
-    - docker build -t xlreon/complex-worker ./worker
-    # Logging in to docker cli
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-    # Pushing to docker hub
-    - docker push xlreon/complex-client 
-    - docker push xlreon/complex-nginx 
-    - docker push xlreon/complex-server 
-    - docker push xlreon/complex-worker 
+  - docker build -t xlreon/docker-client ./client
+  - docker build -t xlreon/docker-nginx ./nginx
+  - docker build -t xlreon/docker-server ./server
+  - docker build -t xlreon/docker-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push xlreon/docker-client 
+  - docker push xlreon/docker-nginx
+  - docker push xlreon/docker-server
+  - docker push xlreon/docker-worker
 
