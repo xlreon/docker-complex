@@ -1,0 +1,12 @@
+sudo: required
+services:
+    - docker build -t xlreon/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run xlreon/react-test npm test -- --coverage
+
+after_success:
+    - docker build -t xlreon/complex-client ./client
+    - docker build -t xlreon/complex-nginx ./nginx
+    - docker build -t xlreon/complex-server ./server
+    - docker build -t xlreon/complex-worker ./worker
