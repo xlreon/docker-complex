@@ -29,20 +29,6 @@ class Fib extends Component {
         return this.state.seenIndexes.map(({ number }) => number).join(', ')
     }
 
-    renderValues () {
-        const entries = []
-        
-        for (let key in this.state.values) {
-            entries.push(
-                <div key={key}>
-                    For index {key} I calculated {this.sate.values[key]}
-                </div>
-
-            );
-        }
-
-        return entries;
-    }
 
     handleSubmit = async (event) => {
         event.preventDefault();
@@ -52,6 +38,20 @@ class Fib extends Component {
         });
         this.setState({ index: '' });
     }
+
+  renderValues() {
+    const entries = [];
+
+    for (let key in this.state.values) {
+      entries.push(
+        <div key={key}>
+          For index {key} I calculated {this.state.values[key]}
+        </div>
+      );
+    }
+
+    return entries;
+  }
 
     render() {
         return (
