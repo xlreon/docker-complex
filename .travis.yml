@@ -19,3 +19,15 @@ after_success:
   - docker push xlreon/docker-server
   - docker push xlreon/docker-worker
 
+deploy:
+    provider: elasticbeanstalk
+    region: us-east-2
+    app: docker-complex
+    env: DockerComplex-env
+    bucket_name: elasticbeanstalk-us-east-2-952941133223
+    bucket_path: docker-complex
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: 
+        secure: $AWS_SECRET_KEY
