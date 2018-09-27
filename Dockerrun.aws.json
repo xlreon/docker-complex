@@ -1,0 +1,36 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name":"client",
+            "image": "xlreon/docker-client",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name":"server",
+            "image": "xlreon/docker-server",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name":"worker",
+            "image": "xlreon/docker-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name":"nginx",
+            "image": "xlreon/docker-ngnix",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort":80,
+                    "containerPort":80
+                }
+            ],
+            "links": ["client","server"]
+        }
+    ]
+}
