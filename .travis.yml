@@ -3,7 +3,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t xlreon/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t xlreon/react-test -f ./client/Dockerfile ./client
 
 script:
   - docker run xlreon/react-test npm test -- --coverage
